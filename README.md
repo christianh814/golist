@@ -1,2 +1,2 @@
 # golist
-Deployment Repository for the golist Application
+Deployment Repository for the golist Application.
