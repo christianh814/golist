@@ -12,7 +12,17 @@ kubectl patch cm/argocd-cm -n argocd --type=merge \
 -p='{"data":{"resource.customizations.health.argoproj.io_Application":"hs = {}\nhs.status = \"Progressing\"\nhs.message = \"\"\nif obj.status ~= nil then\n  if obj.status.health ~= nil then\n    hs.status = obj.status.health.status\n    if obj.status.health.message ~= nil then\n      hs.message = obj.status.health.message\n    end\n  end\nend\nreturn hs\n"}}'
 ```
 
+Now you can apply your App-of-Apps
+
+```shell
+kubectl apply -f golist-app-of-apps.yaml
+```
+
+# Troubleshooting
+
 If you're having issues, delete the pods and wait for them to come back up.
+
+> **You shouldn't need to do this, but it's here anyway**
 
 ```shell
 kubectl delete pods --all -n argocd
