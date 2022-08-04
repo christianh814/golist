@@ -11,3 +11,15 @@ You need to update the `argocd-cm` ConfigMap as [stated here](https://argo-cd.re
 kubectl patch cm/argocd-cm -n argocd --type=merge \
 -p='{"data":{"resource.customizations.health.argoproj.io_Application":"hs = {}\nhs.status = \"Progressing\"\nhs.message = \"\"\nif obj.status ~= nil then\n  if obj.status.health ~= nil then\n    hs.status = obj.status.health.status\n    if obj.status.health.message ~= nil then\n      hs.message = obj.status.health.message\n    end\n  end\nend\nreturn hs\n"}}'
 ```
+
+If you're having issues, delete the pods and wait for them to come back up.
+
+```shell
+kubectl delete pods --all -n argocd
+kubectl rollout status deploy argocd-redis -n argocd
+kubectl rollout status deploy argocd-dex-server -n argocd
+kubectl rollout status deploy argocd-repo-server -n argocd
+kubectl rollout status deploy argocd-applicationset-controller -n argocd
+kubectl rollout status deploy argocd-server -n argocd
+```
+
