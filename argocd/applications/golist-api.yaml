@@ -6,14 +6,14 @@ metadata:
   name: golist-api
   namespace: argocd
 spec:
+  project: default
   source:
     path: apps/golist-api
     repoURL: 'https://github.com/christianh814/golist'
-    targetRevision: main
+    targetRevision: akuity
   destination:
     namespace: golist
-    server: 'https://kubernetes.default.svc'
-  project: default
+    server: my-kind-cluster
   syncPolicy:
     automated:
       prune: true

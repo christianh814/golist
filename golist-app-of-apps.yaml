@@ -2,15 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: golist
-  namespace: argocd
 spec:
   source:
     path: argocd/applications
     repoURL: 'https://github.com/christianh814/golist'
-    targetRevision: main
+    targetRevision: akuity
   destination:
     namespace: argocd
-    server: 'https://kubernetes.default.svc'
+    name: in-cluster
   project: default
   syncPolicy:
     automated:
