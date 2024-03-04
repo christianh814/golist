@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: golist
   namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
   source:
     path: argocd/applications
