@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mysql
+    tier: database
+  name: golist-db-mysql
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+      tier: database
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: mysql
+        tier: database
+    spec:
+      containers:
+      - image: mysql:5.6.51
+        name: mysql
+        env:
+        - name: MYSQL_DATABASE
+          value: golist
+        - name: MYSQL_PASSWORD
+          value: golist
+        - name: MYSQL_USER
+          value: golist
+        - name: MYSQL_RANDOM_ROOT_PASSWORD
+          value: "yes"
+        volumeMounts:
+        - mountPath: /var/lib/mysql/data
+          name: mysql-db
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 12
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 12
+          periodSeconds: 10
+      volumes:
+      - name: mysql-db
+        persistentVolumeClaim:
+          claimName: golist-db-pvc

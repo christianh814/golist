@@ -11,7 +11,7 @@ patches:
 - patch: |-
     - op: replace
       path: /data/config.json
-      value: '{"connection_string":"golist:golist@tcp(golist-db-mariadb:3306)/golist","port":8080}'
+      value: '{"connection_string":"golist:golist@tcp(golist-db-mysql:3306)/golist","port":8080}'
   target:
     kind: ConfigMap
     name: golist-api-config
