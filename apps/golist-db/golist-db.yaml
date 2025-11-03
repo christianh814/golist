@@ -34,7 +34,7 @@ spec:
         - name: MYSQL_RANDOM_ROOT_PASSWORD
           value: "yes"
         volumeMounts:
-        - mountPath: /var/lib/mysql/data
+        - mountPath: /var/lib/mysql
           name: mysql-db
         livenessProbe:
           tcpSocket:
