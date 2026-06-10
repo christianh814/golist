@@ -4,6 +4,7 @@ metadata:
   name: golist-ingress
   namespace: golist
   annotations:
+    argocd.argoproj.io/sync-wave: "3"
     ingress.cilium.io/host-listener-port: "80"
 spec:
   ingressClassName: cilium
