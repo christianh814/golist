@@ -39,13 +39,13 @@ spec:
         livenessProbe:
           tcpSocket:
             port: 3306
-          initialDelaySeconds: 30
-          periodSeconds: 15
+          initialDelaySeconds: 150
+          periodSeconds: 30
         readinessProbe:
           tcpSocket:
             port: 3306
-          initialDelaySeconds: 30
-          periodSeconds: 15
+          initialDelaySeconds: 150
+          periodSeconds: 30
       volumes:
       - name: mysql-db
         persistentVolumeClaim:
