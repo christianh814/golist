@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: golist-frontend-ingress
+  annotations:
+    ingress.cilium.io/host-listener-port: "80"
 spec:
   ingressClassName: cilium
   rules:
