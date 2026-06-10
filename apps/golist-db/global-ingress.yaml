@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: golist-ingress
+  namespace: golist
+  annotations:
+    ingress.cilium.io/host-listener-port: "80"
+spec:
+  ingressClassName: cilium
+  rules:
+    - host: golist.7f000001.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: golist-frontend
+                port:
+                  number: 8080
+    - host: golist-api.7f000001.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: golist-api
+                port:
+                  number: 8080

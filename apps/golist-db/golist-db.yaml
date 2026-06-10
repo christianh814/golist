@@ -37,15 +37,17 @@ spec:
         - mountPath: /var/lib/mysql
           name: mysql-db
         livenessProbe:
+          failureThreshold: 999
           tcpSocket:
             port: 3306
-          initialDelaySeconds: 150
-          periodSeconds: 30
+          initialDelaySeconds: 30
+          periodSeconds: 15
         readinessProbe:
+          failureThreshold: 999
           tcpSocket:
             port: 3306
-          initialDelaySeconds: 150
-          periodSeconds: 30
+          initialDelaySeconds: 30
+          periodSeconds: 15
       volumes:
       - name: mysql-db
         persistentVolumeClaim:

@@ -5,7 +5,6 @@ namespace: golist
 
 resources:
 - github.com/christianh814/golist-frontend/deploy
-- golist-frontend-ingress.yaml
 
 patches:
 - patch: |-

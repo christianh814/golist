@@ -5,7 +5,6 @@ namespace: golist
 
 resources:
 - github.com/christianh814/golist-api/deploy
-- golist-api-ingress.yaml
 
 patches:
 - patch: |-
